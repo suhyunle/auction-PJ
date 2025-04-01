@@ -1,4 +1,4 @@
-package service;
+package back.service;
 public class AuctionService {
 
             /*2. AuctionService.java

@@ -1,4 +1,4 @@
-package service;
+package back.service;
 public class UserService {
 
             /*3. UserService.java

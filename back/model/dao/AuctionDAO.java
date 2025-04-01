@@ -1,4 +1,4 @@
-package dao;
+package back.model.dao;
 public class AuctionDAO {
 
             /*
