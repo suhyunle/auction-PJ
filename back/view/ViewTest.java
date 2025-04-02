@@ -39,7 +39,7 @@ public class ViewTest {
                         }
                     }
             } catch (Exception e) {
-                e.printStackTrace();
+                e.printStackTrace(); break ;
             }
         }   
     }
@@ -50,24 +50,27 @@ public class ViewTest {
 
         while (true) {
             System.out.println(">>> 회원가입을 시작합니다 <<<");
-            System.out.println("1단계. 사용하실 ID를 입력하세요: ");
+            System.out.println("1단계. 사용하실 ID를 입력하세요.");
+            System.out.println("아이디는 영문(대소문자), 숫자, 특수문자(-_@) 조합으로 가능하며, 5~15자 이내여야 합니다.");
+            System.out.print("ID 입력: ");
             userId = scan.nextLine() ;
 
             if (isValidUserId(userId)) {
                 break ;
             } else {
-                System.out.println("오류: 아이디는 영문(대소문자), 숫자, 특수문자(-_@) 조합으로 가능하며, 5~15자 이내여야 합니다.\n회원가입을 다시 시작합니다");
+                System.out.println("오류: 형식에 맞는 ID를 입력하세요.\n회원가입을 다시 시작합니다");
             }
         }
         
         while (true) {
             System.out.println("2단계. 사용하실 패스워드를 입력하세요.");
+            System.out.println("비밀번호는 영문(대소문자), 숫자, 특수문자(!@#$%^&*()-_=+) 조합이 필수이며, 5~15자 이내여야 합니다.");
             userPw = scan.nextLine() ;
 
             if (isValidUserPw(userPw)) {
                 break;
             } else {
-                System.out.println("오류: 비밀번호는 영문(대소문자), 숫자, 특수문자(!@#$%^&*()-_=+) 조합이 필수이며, 5~15자 이내여야 합니다.\n 비밀번호 작성을 다시 시작합니다");
+                System.out.println("오류: 형식에 맞는 패스워드를 입력하세요.\n 비밀번호 작성을 다시 시작합니다");
             }    
         }
 
@@ -79,14 +82,38 @@ public class ViewTest {
     }
 
     public void logIn() {
+        String userId ;
+        String userPw ;
+        
         System.out.println(">>> 로그인을 시작합니다 <<<");
-        System.out.println("1단계. ID를 입력하세요: ");
-        String userId = scan.nextLine() ;
-        System.out.println("2단계. 패스워드를 입력하세요.");
-        String userPw = scan.nextLine() ;
+
+        while (true) {
+            System.out.println("1단계. ID를 입력하세요: ");
+            userId = scan.nextLine() ;
+
+            if (isValidUserId(userId)) {
+                break ;
+            } else {
+                System.out.println("오류: 형식에 맞는 ID를 입력하세요. 로그인을 다시 시작합니다");
+            }
+        }
+
+        while (true) {
+            System.out.println("2단계. 패스워드를 입력하세요.");
+            userPw = scan.nextLine() ;
+
+            if (isValidUserPw(userPw)) {
+                break ;
+            } else {
+                System.out.println("오류: 형식에 맞는 패스워드를 입력하세요. 로그인을 다시 시작합니다") ;
+            }
+            
+        }
 
         String logInResult = front.logIn(userId, userPw) ;
         System.out.println(logInResult);
+       
+        
     }
 
     private boolean isValidUserId(String userId) {
