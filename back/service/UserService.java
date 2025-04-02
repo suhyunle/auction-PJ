@@ -15,13 +15,30 @@ public class UserService {
         */
 
     private UserDAO userDAO ;
+    private static final String USERID_REGEX = "^[a-zA-Z]+$";
 
     public UserService() {
         userDAO = new UserDAO() ;
 
     }
 
+    // public boolean isValidUserId(String userId) {
+    //     return userId.matches(USERID_REGEX);
+    // }
+
+    // public boolean isValidUserPw(String userPw) {
+    //     return userPw.matches(USERID_REGEX);
+    // }
+
     public int signInService(RequestDTO requset) {
+
+        // if (isValidUserId(requset.getUserId())) {
+        //     System.out.println("회원가입 진행 중: UserService");
+            
+        // } else {
+        //     System.out.println("ID에는 영문과 숫자만 사용 가능합니다");
+        //     System.out.println("회원가입 실패");
+        // }
         System.out.println("회원가입 진행 중: UserService");
         return userDAO.signInRow(requset) ;
     }
