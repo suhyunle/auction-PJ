@@ -57,13 +57,23 @@ public class FrontController {
         return payCtrl.buyerId(transaction_id) ;
     }
 
-    public int payStatus(int transaction_id, String buyer_id) {
+    public String payStatus(int transaction_id, String buyer_id) {
         System.out.println(" >>> FrontController payment 거래 진행");
         PaymentController payCtrl = (PaymentController) factory.getCtrl("payment") ;
 
         // 할 일: 거래 id랑 결제 수단 전달하고, 거래 성사 여부 확정
-        int isPayStatus = payCtrl.isStatus(transaction_id, buyer_id);  // 거래가 성사되면 1을 반환, 성사 안되면 0 반환
-        return isPayStatus ;
+        String isPayStatus = payCtrl.isStatus(transaction_id, buyer_id);  // 거래가 성사되면 1을 반환, 성사 안되면 0 반환
+        // return isPayStatus ;
+        return "완료" ;  // 테스트용으로 완료 설정. 위에 것으로 변경하기 
+
+    }
+
+    public int payTBLInsrt(int transaction_id, int payOpt, String paymentStatus) {
+        System.out.println(" >>> FrontController payment 결제 테이블 업데이트 진행");
+        PaymentController payCtrl = (PaymentController) factory.getCtrl("payment") ;
+
+        int isPayTBLinsert = payCtrl.payTBLinsert(transaction_id, payOpt, paymentStatus) ;
+        return isPayTBLinsert ; // 임시값
 
     }
 

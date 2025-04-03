@@ -156,6 +156,7 @@ public class ViewTest {
             if (paymentResult == 1) {
                 System.out.println("거래 ID를 확인했습니다.");
                 buyer_id = front.buyerId(transaction_id);
+                System.out.println(buyer_id);
                 subPayMenu();
                 break ;
         } else {
@@ -170,8 +171,15 @@ public class ViewTest {
         System.out.println("1. 신용카드 | 2. 계좌이체 | 3. PayPal | 4. 기타");
         int payOpt = scan.nextInt() ;
 
-        int paymentStatus = front.payStatus(transaction_id, buyer_id) ;
-        System.out.println(paymentStatus);
+        String paymentStatus = front.payStatus(transaction_id, buyer_id) ;
+        System.out.println("결제 성공 여부: " +paymentStatus);
+
+        if (paymentStatus.equals("완료")) {
+            int paymentTblStatus = front.payTBLInsrt(transaction_id, payOpt, paymentStatus) ; // 결제방법, 결제 상태 추가
+            System.out.println("payment_tb 업데이트 여부: " +paymentTblStatus);
+        }
+
+        
 
     }
 

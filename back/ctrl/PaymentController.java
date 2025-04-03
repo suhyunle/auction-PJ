@@ -25,11 +25,16 @@ String buyerId ;
      // 테스트용으로 1 반환하게 설정함. DBMS와 연결해서 생각해볼 것.
    }
 
-   public int isStatus(int transaction_id, String buyer_id) {
+   public String isStatus(int transaction_id, String buyer_id) {
     System.out.println("거래 성사 여부 확인 중: PaymentController isStatus");
     return paymentService.statusCheckService(transaction_id, buyer_id) ;
     // return paymentService.transIdCheckService(transaction_id) ;
      // 테스트용으로 1 반환하게 설정함. DBMS와 연결해서 생각해볼 것.
+   }
+
+   public int payTBLinsert(int transaction_id, int payOpt, String paymentStatus) {
+    System.out.println("payment_tb 업데이트 중: PaymentController payTBLinsert") ;
+    return paymentService.payTBLservice(transaction_id, payOpt, paymentStatus) ;
    }
     
 }

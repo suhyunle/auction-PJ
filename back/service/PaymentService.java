@@ -25,11 +25,16 @@ public class PaymentService {
 
     }
 
-    public int statusCheckService(int transaction_id, String buyer_id) {
+    public String statusCheckService(int transaction_id, String buyer_id) {
         System.out.println("거래 성사 여부 확인 중: Payment statusCheckService");
         // System.out.println(paymentDAO.statusCheckRow(transaction_id, payOpt));
         return paymentDAO.statusCheckRow(transaction_id, buyer_id) ;
          // 임시로 1로 설정
+
+    }
+
+    public int payTBLservice(int transaction_id, int payOpt, String paymentStatus) {
+        return paymentDAO.TBLresultRow(transaction_id, payOpt, paymentStatus) ; // 임의로 0 설정
 
     }
 

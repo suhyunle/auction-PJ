@@ -43,7 +43,6 @@ public class PaymentDAO {
                 e.printStackTrace();
             }
         }
-
         return buyerId ;
     }
 
@@ -80,12 +79,12 @@ public class PaymentDAO {
     }
 
     // 낙찰가와 user 잔액 차이 계산, 거래 성사여부 1(성공) 0(실패)로 확인
-    public int statusCheckRow(int transaction_id, String buyer_id) {
+    public String statusCheckRow(int transaction_id, String buyer_id) {
         System.out.println(">>>> 거래 ID 확인 중: dao statusCheckRow");
         int userBalance = 0 ;
         int leftUserBalance = 0 ;
         int auctionPrice = 0 ;
-        int finalPayStatus = 0 ;
+        String finalPayStatus = "실패" ;
         Connection conn =       null ;
         PreparedStatement       pstmt_price = null ;
         PreparedStatement       pstmt_balance = null ;
@@ -112,13 +111,13 @@ public class PaymentDAO {
 
                 if (leftUserBalance >= 0) {
                     System.out.println("결제를 성공적으로 마쳤습니다.");
-                    System.out.println("잔액은 " +userBalance +"원입니다.");
-                    finalPayStatus = 1 ;
+                    System.out.println("잔액은 " +leftUserBalance +"원입니다.");
+                    finalPayStatus = "완료" ;
 
                 } else {
                     leftUserBalance = userBalance ;
                     System.out.println("잔액이 부족합니다.");
-                    System.out.println("잔액은 " +userBalance +"원입니다.");
+                    System.out.println("잔액은 " +leftUserBalance +"원입니다.");
                 }
 
             }
@@ -134,5 +133,49 @@ public class PaymentDAO {
         System.out.println("결제에 실패했습니다.");
         return finalPayStatus; // 성공시 1, 실패시 0
     }
-    
+
+    public int TBLresultRow(int transaction_id, int payOpt, String paymentStatus) {
+        System.out.println(">>> dao insertRow") ;
+        int insertFlag = 0 ;
+        Connection conn = null ;
+        PreparedStatement pstmt = null ;
+
+        String insertSQL = "INSERT INTO PAYMENT_TB(PAYMENT_ID, TRANSACTION_ID, PAYMENT_METHOD, PAYMENT_STATUS) " +
+                            "VALUES(PAYMENT_ID_SEQ.NEXTVAL, ?, ?, ?)" ;
+        try {
+            conn = DriverManager.getConnection(URL, USER, PASSWORD) ;
+            pstmt = conn.prepareStatement(insertSQL);
+            pstmt.setInt(1, transaction_id) ;
+
+            switch (payOpt) {
+                case 1:
+                    pstmt.setString(2, "카드") ;
+                case 2:
+                    pstmt.setString(2, "계좌이체") ;
+                case 3:
+                    pstmt.setString(2, "페이팔") ;
+                case 4:
+                    pstmt.setString(2, "기타") ;
+
+            }
+            
+            pstmt.setString(3, paymentStatus) ;
+            insertFlag = pstmt.executeUpdate() ;
+        } catch(Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close() ;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if (insertFlag == 0) {
+            System.out.println("회원가입에 실패했습니다");
+        } else {
+            System.out.println("회원가입에 성공했습니다");
+        }
+        return insertFlag ; // 임의의 수 
+    }
+
 }
