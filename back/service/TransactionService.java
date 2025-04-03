@@ -1,4 +1,13 @@
 package back.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import back.model.dao.AuctionDAO;
+import back.model.dao.HistoryDAO;
+import back.model.domain.ResponseDTO;
+import back.model.domain.TranResDTO;
+
 public class TransactionService {
 
             /*5. TransactionService.java
@@ -8,5 +17,14 @@ public class TransactionService {
         트랜잭션 관리
         입찰 및 경매 종료 시 데이터 일관성 유지
         트랜잭션 처리 */
+    private HistoryDAO dao;
     
+    public TransactionService(){
+        dao = new HistoryDAO();
+    }
+
+    public Optional<List<TranResDTO>> tranService(){
+        System.out.println(">>> debug transactionService_all");
+        return dao.selectRow();
+    }
 }

@@ -11,11 +11,12 @@ import lombok.ToString;
 @Setter
 
 public class ResponseDTO {
-    private int auctionId;
-    private String title;
-    private String description;
-    private String startTime;
-    private String endTime;
-    private String status;  // 진행 중 / 완료
-    private int highestBid;
+    private int itemId;         // 물품 ID
+    private String sellerId;    // 판매자 ID
+    private String title;       // 물품 이름
+    private String description; // 물품 설명
+    private int currentPrice;   // 현재 최고 입찰가
+    private String startTime;   // 경매 시작 시간
+    private String endTime;     // 경매 종료 시간
+    private String status;      // 진행 상태 (진행중/완료)
 }

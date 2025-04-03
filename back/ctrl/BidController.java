@@ -17,7 +17,7 @@ public class BidController {
 
         public int updateBid(Map<String, Object> map){
                 System.out.println(">>> debug updateBid");
-               return service.updateService(map);
+               return service.bidService(map);
         }
 }
 

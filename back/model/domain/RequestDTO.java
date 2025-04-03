@@ -8,9 +8,10 @@ import lombok.ToString;
 @Getter
 @ToString
 public class RequestDTO {
-    private String name;
+    private String itemName;
     private String description;
-    private int sellerId; // 판매자 ID
     private int startingPrice; // 시작가
+    private int currentPrice;  // ✅ 추가 필요
     private String endTime; // 경매 종료 시간
+    private String sellerId; // 로그인한 사용자 ID
 }

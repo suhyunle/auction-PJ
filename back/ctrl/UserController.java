@@ -1,4 +1,9 @@
 package back.ctrl ;
+
+import back.model.domain.RequestDTO;
+import back.model.domain.UserDTO;
+import back.service.UserService;
+
 public class UserController {
     /*
      * . UserController.java
@@ -9,4 +14,24 @@ public class UserController {
         회원가입 처리
         사용자 정보 수정
      */
+
+   private UserService userService ;
+
+   public UserController() {
+
+   }
+
+   public UserController(UserService userService) {
+      this.userService = userService ;
+   }
+
+   public int signInCtrl(UserDTO request) {
+      System.out.println("회원 가입 진행 중: UserController");
+      return userService.signInService(request);
+   }
+
+   public String logInCtrl(UserDTO request) {
+      System.out.println("로그인 진행 중: UserController");
+      return userService.logInService(request);
+   }
 }
