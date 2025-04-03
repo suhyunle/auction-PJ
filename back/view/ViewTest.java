@@ -11,7 +11,10 @@ public class ViewTest {
         front = new FrontController() ;
     }
 
-    // 회원가입/로그인 선택
+    private int transaction_id;
+    private String buyer_id ;
+
+    // USER PART: 회원가입/로그인 선택
     public void signLogMenu() {
         while (true) {
             try {
@@ -133,6 +136,46 @@ public class ViewTest {
         return userPw.matches("^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[!@#$%^&*()\\-_=+])[a-zA-Z\\d!@#$%^&*()\\-_=+]{5,15}$");
         // 비밀번호에서 영문(대소문자), 숫자, 특수문자가 모두 반드시 포함
     }
+
+
+    // PAYMENT PART: 결제 파트. 결제가 성공적으로 완료되면 1 반환, 실패하면 0 반환
+    public void payment() {
+        int transaction_id ;
+        int payment_id ;
+        String buyer_id ;
+
+        while (true) {
+            System.out.println("결제 페이지에 오신 것을 환영합니다");
+
+            System.out.println("거래 ID를 입력하세요: ");
+            transaction_id = scan.nextInt() ;
+            // System.out.println("결제 ID를 입력하세요.");  // 결제 아이디가 이미 있을 경우
+            // payment_id = scan.nextInt() ;
+
+            int paymentResult = front.payment(transaction_id) ;
+            if (paymentResult == 1) {
+                System.out.println("거래 ID를 확인했습니다.");
+                buyer_id = front.buyerId(transaction_id);
+                subPayMenu();
+                break ;
+        } else {
+            System.out.println("거래 ID를 찾을 수 없습니다.");
+        }  
+        }
+    }
+
+    public void subPayMenu() {
+        System.out.println("subPayMenu 메서드 실행 확인");
+        System.out.println("결제방법을 선택합니다.");
+        System.out.println("1. 신용카드 | 2. 계좌이체 | 3. PayPal | 4. 기타");
+        int payOpt = scan.nextInt() ;
+
+        int paymentStatus = front.payStatus(transaction_id, buyer_id) ;
+        System.out.println(paymentStatus);
+
+    }
+
+    
 
 
 }

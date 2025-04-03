@@ -1,5 +1,6 @@
 package back.front;
 
+import back.ctrl.PaymentController;
 import back.ctrl.UserController;
 import back.factory.BeanFactory;
 import back.model.domain.RequestDTO;
@@ -42,4 +43,29 @@ public class FrontController {
             return logInUser + "님, 로그인에 성공하셨습니다." ;
         }
     }
+
+    public int payment(int transaction_id) {
+        System.out.println(" >>> FrontController payment 거래 ID 확인");
+        PaymentController payCtrl = (PaymentController) factory.getCtrl("payment") ;
+
+        int paySuccessful = payCtrl.tranIdCheck(transaction_id);  // 거래 아이디를 찾으면 1을 반환
+        return paySuccessful ;
+    }
+
+    public String buyerId(int transaction_id) {
+        PaymentController payCtrl = (PaymentController) factory.getCtrl("payment") ;
+        return payCtrl.buyerId(transaction_id) ;
+    }
+
+    public int payStatus(int transaction_id, String buyer_id) {
+        System.out.println(" >>> FrontController payment 거래 진행");
+        PaymentController payCtrl = (PaymentController) factory.getCtrl("payment") ;
+
+        // 할 일: 거래 id랑 결제 수단 전달하고, 거래 성사 여부 확정
+        int isPayStatus = payCtrl.isStatus(transaction_id, buyer_id);  // 거래가 성사되면 1을 반환, 성사 안되면 0 반환
+        return isPayStatus ;
+
+    }
+
+
 }

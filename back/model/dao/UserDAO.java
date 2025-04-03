@@ -82,7 +82,7 @@ public class UserDAO {
         PreparedStatement pstmt = null ;
 
         if (isUserTaken(request.getUserId())) {
-            System.out.println("중복되는 ID를 사용하실 수 없습니다. 다른 ID를 입력하세요.");
+            System.out.println("중복되는 ID를 사용하실 수 없습니다. 다른 ID를 입력하세요.\n회원가입을 다시 시작합니다.");
             return flag ;
         }
 
