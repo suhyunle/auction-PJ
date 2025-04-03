@@ -39,6 +39,40 @@ public class UserDAO {
             e.printStackTrace();
         }
     }
+
+    public boolean isUserTaken(String userId) {
+        boolean exists = false ;
+        Connection conn = null ;
+        PreparedStatement pstmt = null ;
+        ResultSet               rset = null ;
+
+        String idCheckSQL = "SELECT USER_ID FROM USER_TB WHERE USER_ID = ?" ;
+        
+
+        try {
+            conn = DriverManager.getConnection(URL, USER, PASSWORD) ;
+            pstmt = conn.prepareStatement(idCheckSQL);
+            pstmt.setString(1, userId) ;
+            rset = pstmt.executeQuery() ;
+
+            while (rset.next()) {
+                if (rset.getString(1).equals(userId)) {
+                    exists = true ;
+                    break ;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close() ;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return exists ;
+    }
     
 
     public int signInRow(RequestDTO request) {
@@ -46,6 +80,12 @@ public class UserDAO {
         int flag = 0 ;
         Connection conn = null ;
         PreparedStatement pstmt = null ;
+
+        if (isUserTaken(request.getUserId())) {
+            System.out.println("중복되는 ID를 사용하실 수 없습니다. 다른 ID를 입력하세요.\n회원가입을 다시 시작합니다.");
+            return flag ;
+        }
+
         String insertSQL = "INSERT INTO USER_TB(USER_ID, PASSWORD, USERNAME) " +
                             "VALUES(?,?,?)" ;
         try {
