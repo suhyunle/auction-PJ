@@ -73,7 +73,17 @@ public class FrontController {
         PaymentController payCtrl = (PaymentController) factory.getCtrl("payment") ;
 
         int isPayTBLinsert = payCtrl.payTBLinsert(transaction_id, payOpt, paymentStatus) ;
+        
         return isPayTBLinsert ; // 임시값
+
+    }
+
+    public String auctionStatus(int transaction_id) {
+        System.out.println(" >>> FrontController payment 경매 완료 여부 확인");
+        PaymentController payCtrl = (PaymentController) factory.getCtrl("payment") ;
+
+        String isAuctionCMPLT = payCtrl.auctionCMPLT(transaction_id) ;
+        return isAuctionCMPLT ;
 
     }
 

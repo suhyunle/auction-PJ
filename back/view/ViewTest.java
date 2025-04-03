@@ -174,7 +174,10 @@ public class ViewTest {
         String paymentStatus = front.payStatus(transaction_id, buyer_id) ;
         System.out.println("결제 성공 여부: " +paymentStatus);
 
-        if (paymentStatus.equals("완료")) {
+        String auctionCMPLT = front.auctionStatus(transaction_id) ;   // 경매 거래 완료 여부!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+        if (paymentStatus.equals("완료") && auctionCMPLT.equals("1")) {
             int paymentTblStatus = front.payTBLInsrt(transaction_id, payOpt, paymentStatus) ; // 결제방법, 결제 상태 추가
             System.out.println("payment_tb 업데이트 여부: " +paymentTblStatus);
         }

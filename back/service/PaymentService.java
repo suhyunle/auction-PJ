@@ -38,6 +38,11 @@ public class PaymentService {
 
     }
 
+    public String auctionCMPLTservice(int transaction_id) {
+        return paymentDAO.auctionCMPLTrow(transaction_id) ;
+
+    }
+
     
     
 }

@@ -134,14 +134,15 @@ public class PaymentDAO {
         return finalPayStatus; // 성공시 1, 실패시 0
     }
 
+    // 결제 테이블에 insert
     public int TBLresultRow(int transaction_id, int payOpt, String paymentStatus) {
         System.out.println(">>> dao insertRow") ;
         int insertFlag = 0 ;
         Connection conn = null ;
         PreparedStatement pstmt = null ;
 
-        String insertSQL = "INSERT INTO PAYMENT_TB(PAYMENT_ID, TRANSACTION_ID, PAYMENT_METHOD, PAYMENT_STATUS) " +
-                            "VALUES(PAYMENT_ID_SEQ.NEXTVAL, ?, ?, ?)" ;
+        String insertSQL = "INSERT INTO PAYMENT_TB(PAYMENT_ID, TRANSACTION_ID, PAYMENT_METHOD, PAYMENT_STATUS, PAYMENT_TIME) " +
+                            "VALUES(PAYMENT_ID_SEQ.NEXTVAL, ?, ?, ?, SYSTIMESTAMP)" ;
         try {
             conn = DriverManager.getConnection(URL, USER, PASSWORD) ;
             pstmt = conn.prepareStatement(insertSQL);
@@ -171,11 +172,44 @@ public class PaymentDAO {
             }
         }
         if (insertFlag == 0) {
-            System.out.println("회원가입에 실패했습니다");
+            System.out.println("결제 테이블 업데이트에 실패했습니다");
         } else {
-            System.out.println("회원가입에 성공했습니다");
+            System.out.println("결제 테이블 업데이트에 성공했습니다");
         }
         return insertFlag ; // 임의의 수 
+    }
+
+    // 경매 완료 여부 확인
+    public String auctionCMPLTrow(int transaction_id) {
+        System.out.println(">>>> 경매 완료 여부 확인 중: dao auctionCMPLTrow");
+        String checkAuctionCMPLT = null ;
+        Connection conn =       null ;
+        PreparedStatement       pstmt = null ;
+        ResultSet               rset = null ;
+        String selectSQL = "SELECT IS_COMPLETED FROM TRANSACTION_TB WHERE TRANSACTION_ID = ?" ;
+        try {
+            conn = DriverManager.getConnection(URL, USER, PASSWORD) ;
+            pstmt = conn.prepareStatement(selectSQL);
+            pstmt.setInt(1, transaction_id) ;
+            rset = pstmt.executeQuery() ;
+
+            while (rset.next()) {
+                checkAuctionCMPLT = rset.getString("IS_COMPLETED") ;
+                if (checkAuctionCMPLT.equals("1")) {
+                    return checkAuctionCMPLT ;
+                }
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close() ;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("경매가 완료되지 않았습니다.");
+        return checkAuctionCMPLT ;
     }
 
 }
