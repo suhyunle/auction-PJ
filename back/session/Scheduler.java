@@ -33,8 +33,8 @@ public class Scheduler {
         ResultSet rs = null;
     
         try {
-            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "hr", "hr");
-    
+            // conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "hr", "hr");
+            conn = DBConnection.getConnection();  // 공통 DB 연결 사용
             // 🔍 현재 시간이 종료 시간을 지난 경매 찾기
             String findExpiredAuctions = "SELECT item_id FROM ITEM_TB WHERE CAST(end_time AS TIMESTAMP) <= SYSTIMESTAMP AND TRIM(status) = '진행중'";
             pstmt = conn.prepareStatement(findExpiredAuctions);
