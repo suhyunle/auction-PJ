@@ -15,18 +15,8 @@ import back.session.DBConnection;
 import back.session.UserSession;
 
 public class HistoryDAO {
-    // public static final String DRIVER   = "oracle.jdbc.driver.OracleDriver";
-    // public static final String URL      = "jdbc:oracle:thin:@localhost:1521/xe";
-    // public static final String USER     = "hr";
-    // public static final String PASSWORD = "hr";
 
     public HistoryDAO(){
-        // try{
-        //     Class.forName(DRIVER);
-        //     System.out.println("1. Driver loading OK");
-        // } catch (ClassNotFoundException e){
-        //     e.printStackTrace();
-        // }
     }
     
     public Optional<List<TranResDTO>> selectRow(){ // Optional 리턴 메서드
@@ -77,7 +67,7 @@ public class HistoryDAO {
     public static void closeAuction(int itemId) {
         boolean isProcessed = false;
         
-        try (Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "hr", "hr")) {
+        try (Connection conn = DBConnection.getConnection();) {
             conn.setAutoCommit(false); // 트랜잭션 시작
             
             // 🏷️ 판매자 ID 가져오기

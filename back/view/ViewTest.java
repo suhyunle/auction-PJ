@@ -8,7 +8,9 @@ import back.model.domain.ResponseDTO;
 import back.model.domain.TranResDTO;
 import back.session.UserSession;
 
-    public class ViewTest {
+public class ViewTest {
+    private int transaction_id;
+    private String buyer_id ;
 
     private FrontController front;
     Scanner scan = new Scanner(System.in) ;
@@ -42,23 +44,39 @@ import back.session.UserSession;
     // method 정의
     // login
     public void login(){
-        System.out.println("login");
+
+        String userId ;
+        String userPw ;
+        
         System.out.println(">>> 로그인을 시작합니다 <<<");
-        System.out.println("1단계. ID를 입력하세요: ");
-        String userId = scan.nextLine() ;
-        System.out.println("2단계. 패스워드를 입력하세요.");
-        String userPw = scan.nextLine() ;
+
+        while (true) {
+            System.out.println("1단계. ID를 입력하세요: ");
+            userId = scan.nextLine() ;
+
+            if (isValidUserId(userId)) {
+                break ;
+            } else {
+                System.out.println("오류: 형식에 맞는 ID를 입력하세요. 로그인을 다시 시작합니다");
+            }
+        }
+
+        while (true) {
+            System.out.println("2단계. 패스워드를 입력하세요.");
+            userPw = scan.nextLine() ;
+
+            if (isValidUserPw(userPw)) {
+                break ;
+            } else {
+                System.out.println("오류: 형식에 맞는 패스워드를 입력하세요. 로그인을 다시 시작합니다") ;
+            }
+            
+        }
 
         String logInResult = front.logIn(userId, userPw) ;
         System.out.println(logInResult);
         UserSession.setLoggedInUser(userId);  // ✅ 로그인 정보 저장
         loginMenu();
-        // if (logInResult.equals(userId+"님, 로그인에 성공하셨습니다.")) { 
-        //     UserSession.setLoggedInUser(userId); // 로그인 정보 저장
-        //     loginMenu();
-        // } else {
-        //     System.out.println("로그인 실패! 다시 시도하세요.");
-        // }
     }
     
     // signin
@@ -69,24 +87,27 @@ import back.session.UserSession;
 
         while (true) {
             System.out.println(">>> 회원가입을 시작합니다 <<<");
-            System.out.println("1단계. 사용하실 ID를 입력하세요: ");
+            System.out.println("1단계. 사용하실 ID를 입력하세요.");
+            System.out.println("아이디는 영문(대소문자), 숫자, 특수문자(-_@) 조합으로 가능하며, 5~15자 이내여야 합니다.");
+            System.out.print("ID 입력: ");
             userId = scan.nextLine() ;
 
             if (isValidUserId(userId)) {
                 break ;
             } else {
-                System.out.println("오류: 아이디는 영문(대소문자), 숫자, 특수문자(-_@) 조합으로 가능하며, 5~15자 이내여야 합니다.\n회원가입을 다시 시작합니다");
+                System.out.println("오류: 형식에 맞는 ID를 입력하세요.\n회원가입을 다시 시작합니다");
             }
         }
         
         while (true) {
             System.out.println("2단계. 사용하실 패스워드를 입력하세요.");
+            System.out.println("비밀번호는 영문(대소문자), 숫자, 특수문자(!@#$%^&*()-_=+) 조합이 필수이며, 5~15자 이내여야 합니다.");
             userPw = scan.nextLine() ;
 
             if (isValidUserPw(userPw)) {
                 break;
             } else {
-                System.out.println("오류: 비밀번호는 영문(대소문자), 숫자, 특수문자(!@#$%^&*()-_=+) 조합이 필수이며, 5~15자 이내여야 합니다.\n 비밀번호 작성을 다시 시작합니다");
+                System.out.println("오류: 형식에 맞는 패스워드를 입력하세요.\n 비밀번호 작성을 다시 시작합니다");
             }    
         }
 
@@ -95,23 +116,14 @@ import back.session.UserSession;
         int signInResult = front.signIn(userId, userPw, userName) ;
         System.out.println(signInResult);
     }
+
     // id 유효성 테스트 메서드
     private boolean isValidUserId(String userId) {
         return userId.matches("^(?=.*[a-zA-Z])[a-zA-Z\\d\\-_@]{5,15}$$");
-        /* 영문(대소문자)은 필수
-
-        숫자와 특수문자는 선택적으로 포함 가능
-
-        숫자만으로 이루어진 아이디는 불가능
-
-        특수문자만으로 이루어진 아이디도 불가능
-
-        최소 5자 이상, 최대 15자 이하 */
     }
     // 비밀번호 유효성 테스트 메서드
     private boolean isValidUserPw(String userPw) {
         return userPw.matches("^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[!@#$%^&*()\\-_=+])[a-zA-Z\\d!@#$%^&*()\\-_=+]{5,15}$");
-        // 비밀번호에서 영문(대소문자), 숫자, 특수문자가 모두 반드시 포함
     }
 
     // watchitem
@@ -136,7 +148,7 @@ import back.session.UserSession;
                 System.out.print("원하시는 번호를 선택하세요 : ");
                 Scanner scan = new Scanner(System.in); // in: System 클래스가 갖고 있는 static 메서드
                 int num = scan.nextInt();
-
+                scan.nextLine(); // 잘못된 입력 제거
                 switch (num) {
                     case 1:
                         watchItem();                        
@@ -152,6 +164,9 @@ import back.session.UserSession;
                         return;
                     case 5:
                         checkLog();
+                        break;
+                    case 6:
+                        payment();
                         break;
                     default:
                         break;
@@ -180,7 +195,7 @@ import back.session.UserSession;
     // buyItem
     public void buyItem(){
         System.out.println("경매 참여");
-        System.out.print("입찰할 상품명을 입력하세요: ");
+        System.out.print("입찰할 상품ID을 입력하세요: ");
         int itemId = scan.nextInt();
         scan.nextLine();
         int bidAmount = 0;
@@ -230,5 +245,64 @@ import back.session.UserSession;
         }
     }
 
+    // PAYMENT PART: 결제 파트. 결제가 성공적으로 완료되면 1 반환, 실패하면 0 반환
+    public void payment() {
+        // int transaction_id ;
+        int payment_id ;
+        String buyer_id ;
+
+        while (true) {
+            System.out.println("결제 페이지에 오신 것을 환영합니다");
+
+            System.out.println("거래 ID를 입력하세요: ");
+            transaction_id = scan.nextInt() ;
+
+            int paymentResult = front.payment(transaction_id) ;
+            if (paymentResult == 1) {
+                System.out.println("거래 ID를 확인했습니다.");
+                buyer_id = front.buyerId(transaction_id);
+                System.out.println(buyer_id);
+                subPayMenu();
+                break ;
+        } else {
+            System.out.println("거래 ID를 찾을 수 없습니다.");
+        }  
+        }
+    }
+    public void subPayMenu() {
+        System.out.println("subPayMenu 메서드 실행 확인");
+        
+        System.out.print("잔액을 충전하시겠습니까? (Y/N): ");
+        String chargeOpt = scan.next();
+
+        if (chargeOpt.equalsIgnoreCase("Y")) {
+            System.out.print("충전할 금액을 입력하세요: ");
+            int chargeAmount = scan.nextInt();
+            int chargeResult = front.chargeBalance(buyer_id, chargeAmount); // 🔹추가 메서드 호출
+            if (chargeResult > 0) {
+                System.out.println("잔액이 성공적으로 충전되었습니다.");
+            } else {
+                System.out.println("충전에 실패했습니다.");
+            }
+        }
+
+        System.out.println("결제방법을 선택합니다.");
+        System.out.println("1. 신용카드 | 2. 계좌이체 | 3. PayPal | 4. 기타");
+        int payOpt = scan.nextInt() ;
+
+        String paymentStatus = front.payStatus(transaction_id, buyer_id) ;
+        System.out.println("결제 성공 여부: " +paymentStatus);
+
+        int auctionCMPLT = front.auctionStatus(transaction_id) ;   // 경매 거래 완료 여부!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+        if (paymentStatus.equals("완료") && (auctionCMPLT == 1)) {
+            int paymentTblStatus = front.payTBLInsrt(transaction_id, payOpt, paymentStatus) ; // 결제방법, 결제 상태 추가
+            System.out.println("payment_tb 업데이트 여부: " +paymentTblStatus);
+        }
+
+        
+
+    }
 
 }

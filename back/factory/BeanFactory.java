@@ -6,10 +6,12 @@ import java.util.Map;
 import back.ctrl.AuctionController;
 import back.ctrl.BidController;
 import back.ctrl.HistoryController;
+import back.ctrl.PaymentController;
 import back.ctrl.RegisterController;
 import back.ctrl.UserController;
 import back.service.AuctionService;
 import back.service.BidService;
+import back.service.PaymentService;
 import back.service.RegisterService;
 import back.service.TransactionService;
 import back.service.UserService;
@@ -25,7 +27,10 @@ public class BeanFactory {
         BidService bidService = new BidService();
         UserService userService = new UserService() ;
         TransactionService transactionService = new TransactionService();
+        PaymentService paymentService = new PaymentService() ;
+        // NEW: 결제 컨트롤러
 
+        map.put("payment", new PaymentController(paymentService)) ;
         map.put("list", new AuctionController(auctionService));
         map.put("register", new RegisterController(registerService));
         map.put("bid", new BidController(bidService));

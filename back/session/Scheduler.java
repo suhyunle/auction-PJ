@@ -27,37 +27,6 @@ public class Scheduler {
         }, 0, CHECK_INTERVAL, TimeUnit.SECONDS);
     }
 
-    // private static void checkAndCloseAuctions() {
-    //     Connection conn = null;
-    //     PreparedStatement pstmt = null;
-    //     ResultSet rs = null;
-
-    //     try {
-    //         conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "hr", "hr");
-
-    //         // 1️⃣ 현재 시간이 종료 시간을 지난 경매 찾기
-    //         String findExpiredAuctions = "SELECT item_id FROM ITEM_TB WHERE end_time <= SYSTIMESTAMP AND status = '진행중'";
-    //         pstmt = conn.prepareStatement(findExpiredAuctions);
-    //         rs = pstmt.executeQuery();
-
-    //         while (rs.next()) {
-    //             int itemId = rs.getInt("item_id");
-    //             System.out.println("🔹 경매 종료 처리: item_id = " + itemId);
-    //             HistoryDAO.closeAuction(itemId); // 자동으로 closeAuction 실행
-    //         }
-    //     } catch (Exception e) {
-    //         e.printStackTrace();
-    //     } finally {
-    //         try {
-    //             if (rs != null) rs.close();
-    //             if (pstmt != null) pstmt.close();
-    //             if (conn != null) conn.close();
-    //         } catch (SQLException e) {
-    //             e.printStackTrace();
-    //         }
-    //     }
-
-    // }
     private static void checkAndCloseAuctions() {
         Connection conn = null;
         PreparedStatement pstmt = null;
