@@ -24,12 +24,12 @@ public class UserService {
 
     public int signInService(UserDTO requset) {
 
-        System.out.println("회원가입 진행 중: UserService");
+        // System.out.println("회원가입 진행 중: UserService");
         return userDAO.signInRow(requset) ;
     }
 
     public String logInService(UserDTO requset) {
-        System.out.println("로그인 진행 중: UserService");
+        // System.out.println("로그인 진행 중: UserService");
         return userDAO.logInRow(requset) ;
     }
 }

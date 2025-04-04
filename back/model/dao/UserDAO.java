@@ -48,7 +48,7 @@ public class UserDAO {
     }
 
     public int signInRow(UserDTO request) {
-        System.out.println(">>> dao insertRow") ;
+        // System.out.println(">>> dao insertRow") ;
         int flag = 0 ;
         Connection conn = null ;
         PreparedStatement pstmt = null ;
@@ -86,7 +86,7 @@ public class UserDAO {
     }
 
     public String logInRow(UserDTO request) {
-        System.out.println(">>>> dao selectRow");
+        // System.out.println(">>>> dao selectRow");
         String logInUser = null ;
         Connection conn =       null ;
         PreparedStatement       pstmt = null ;

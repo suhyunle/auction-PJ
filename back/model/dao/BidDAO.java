@@ -13,7 +13,7 @@ import back.session.DBConnection;
 public class BidDAO {
 
     public int insertRow(Map<String, Object> map){
-        System.out.println(">>>> debug Biddao insertRow");
+        // System.out.println(">>>> debug Biddao insertRow");
         int flag = 0;
         Connection          conn = null;
         PreparedStatement   pstmt = null;

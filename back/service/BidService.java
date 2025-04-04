@@ -7,14 +7,6 @@ import back.model.dao.BidDAO;
 
 public class BidService {
     
-    /*1. BidService.java
-    기능: 입찰 관련 비즈니스 로직을 처리. 입찰 처리, 입찰 금액 갱신, 최고 입찰자 확인 등을 담당.
-
-    주요 메서드:
-    입찰 처리
-    최고 입찰 금액 갱신
-    입찰 내역 조회 */
-    // private AuctionDAO aDao;
     private BidDAO dao;
     
     public BidService(){
@@ -23,7 +15,7 @@ public class BidService {
     }
 
     public int bidService(Map<String, Object> map){
-        System.out.println(">>> debug bidService");
+        // System.out.println(">>> debug bidService");
         
         // 1. 유효성 검사 (입찰 데이터 체크)
         if (!map.containsKey("itemId") || !map.containsKey("userId") || !map.containsKey("bidAmount")) {

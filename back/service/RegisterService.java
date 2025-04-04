@@ -11,7 +11,7 @@ public class RegisterService {
     }
 
     public int registerService(RequestDTO request){
-        System.out.println(">>> debug register Service");
+        // System.out.println(">>> debug register Service");
 
         // 2. 데이터 보정 (Trim 및 기본값 설정)
         RequestDTO updatedRequest = RequestDTO.builder()

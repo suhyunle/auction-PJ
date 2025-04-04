@@ -23,13 +23,13 @@ public class AuctionService {
     }
 
     public Optional<ResponseDTO> auctionService(int seq){
-        System.out.println(">>>> debug auctionService");
+        // System.out.println(">>>> debug auctionService");
         // TodoResponseDTO resDao = dao.selectDao(num);
         return dao.selectRow(seq);
     }
 
     public Optional<List<ResponseDTO>> auctionService(){
-        System.out.println(">>> debug selectService_all");
+        // System.out.println(">>> debug selectService_all");
         return dao.selectRow();
     }
 }

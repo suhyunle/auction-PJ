@@ -20,7 +20,7 @@ public class HistoryDAO {
     }
     
     public Optional<List<TranResDTO>> selectRow(){ // Optional 리턴 메서드
-        System.out.println(">>> debug historyDao");
+        // System.out.println(">>> debug historyDao");
         List<TranResDTO> list = new ArrayList<>();
         String loggedInUser = UserSession.getLoggedInUser(); // 로그인한 사용자 ID 가져오기
 

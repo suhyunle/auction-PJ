@@ -10,7 +10,7 @@ import back.session.DBConnection;
 public class RegisterDAO {
 
     public int insertRow(RequestDTO request){
-        System.out.println(">>>> debug registerdao insertRow");
+        // System.out.println(">>>> debug registerdao insertRow");
         int flag = 0;
         Connection          conn = null;
         PreparedStatement   pstmt = null;

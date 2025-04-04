@@ -13,7 +13,7 @@ public class PaymentDAO {
 
     // 구매자 id 확인
     public String buyerIdRow(int transaction_id) {
-        System.out.println(">>>> 구매자 ID 확인 중: dao transIdCheckRow");
+        // System.out.println(">>>> 구매자 ID 확인 중: dao transIdCheckRow");
         String buyerId = null ;
         PreparedStatement       pstmt = null ;
         ResultSet               rset = null ;
@@ -36,7 +36,7 @@ public class PaymentDAO {
 
     // 거래 id 존재 여부 확인
     public int transIdCheckRow(int transaction_id) {
-        System.out.println(">>>> 거래 ID 확인 중: dao transIdCheckRow");
+        // System.out.println(">>>> 거래 ID 확인 중: dao transIdCheckRow");
         int checkTransId = 0 ;
         PreparedStatement       pstmt = null ;
         ResultSet               rset = null ;
@@ -62,7 +62,7 @@ public class PaymentDAO {
 
     // 낙찰가와 user 잔액 차이 계산, 거래 성사여부 1(성공) 0(실패)로 확인
     public String statusCheckRow(int transaction_id, String buyer_id) {
-        System.out.println(">>>> 거래 ID 확인 중: dao statusCheckRow");
+        // System.out.println(">>>> 거래 ID 확인 중: dao statusCheckRow");
         int userBalance = 0 ;
         int leftUserBalance = 0 ;
         int auctionPrice = 0 ;
@@ -121,8 +121,8 @@ public class PaymentDAO {
 
     // 결제 테이블에 insert
     public int TBLresultRow(int transaction_id, int payOpt, String paymentStatus) {
-        System.out.println(">>> dao insertRow") ;
-        System.out.println("삽입 시도 중인 transaction_id: " + transaction_id);
+        // System.out.println(">>> dao insertRow") ;
+        // System.out.println("삽입 시도 중인 transaction_id: " + transaction_id);
         int insertFlag = 0 ;
         PreparedStatement pstmt = null ;
 
@@ -166,7 +166,7 @@ public class PaymentDAO {
 
     // 경매 완료 여부 확인
     public int auctionCMPLTrow(int transaction_id) {
-        System.out.println(">>>> 경매 완료 여부 확인 중: dao auctionCMPLTrow");
+        // System.out.println(">>>> 경매 완료 여부 확인 중: dao auctionCMPLTrow");
         int checkAuctionCMPLT = 0 ;
         PreparedStatement       pstmt = null ;
         ResultSet               rset = null ;

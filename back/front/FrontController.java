@@ -28,7 +28,7 @@ public class FrontController {
     public List<ResponseDTO> watchItem(){
         // auctionController로 연결 -> 경매 물품 조회
 
-        System.out.println(">>>> FrontController list");
+        // System.out.println(">>>> FrontController list");
         //   factory로 부터 instance를 반환받는 형식으로 바뀌어야한다.
         
         AuctionController auctionCtrl = (AuctionController)factory.getCtrl("list");
@@ -38,7 +38,7 @@ public class FrontController {
 
     // 물품 등록 Controller 
     public int register(String itemName, String description, int startingPrice){
-        System.out.println(">>>> FrontController register-");
+        // System.out.println(">>>> FrontController register-");
         String sellerId = UserSession.getLoggedInUser(); // 로그인한 사용자 ID 가져오기
         RegisterController registerCtrl = (RegisterController)factory.getCtrl("register");
         RequestDTO request = RequestDTO.builder()
@@ -52,7 +52,7 @@ public class FrontController {
 
     // 물품 입찰 컨트롤러
     public int updateBid(int itemId, int bidAmount, String userId){
-        System.out.println(">>>> FrontController updateBid 호출");
+        // System.out.println(">>>> FrontController updateBid 호출");
 
         BidController bidCtrl = (BidController) factory.getCtrl("bid");
         Map<String, Object> map = new HashMap<>();
@@ -64,7 +64,7 @@ public class FrontController {
     }
 
     public int signIn(String userId, String userPw, String userName) {
-        System.out.println(" >>> FrontController SignIn");
+        // System.out.println(" >>> FrontController SignIn");
         UserController userCtrl = (UserController) factory.getCtrl("signIn") ;
         UserDTO request = UserDTO.builder()
                             .userId(userId)
@@ -79,7 +79,7 @@ public class FrontController {
     }
 
     public String logIn(String userId, String userPw) {
-        System.out.println(" >>> FrontController LogIn");
+        // System.out.println(" >>> FrontController LogIn");
         UserController userCtrl = (UserController) factory.getCtrl("logIn") ;
         UserDTO request = UserDTO.builder()
                             .userId(userId)
@@ -97,7 +97,7 @@ public class FrontController {
     // 거래 조회 컨트롤러
     public List<TranResDTO> watchTran(){
 
-        System.out.println(">>>> FrontController tranlist");
+        // System.out.println(">>>> FrontController tranlist");
         
         HistoryController historyCtrl = (HistoryController)factory.getCtrl("history");
         List<TranResDTO> list = historyCtrl.watchTran();
@@ -105,7 +105,7 @@ public class FrontController {
     }
     // 결제
     public int payment(int transaction_id) {
-        System.out.println(" >>> FrontController payment 거래 ID 확인");
+        // System.out.println(" >>> FrontController payment 거래 ID 확인");
         PaymentController payCtrl = (PaymentController) factory.getCtrl("payment") ;
 
         int paySuccessful = payCtrl.tranIdCheck(transaction_id);  // 거래 아이디를 찾으면 1을 반환
@@ -118,7 +118,7 @@ public class FrontController {
     }
 
     public String payStatus(int transaction_id, String buyer_id) {
-        System.out.println(" >>> FrontController payment 거래 진행");
+        // System.out.println(" >>> FrontController payment 거래 진행");
         PaymentController payCtrl = (PaymentController) factory.getCtrl("payment") ;
 
         // 할 일: 거래 id랑 결제 수단 전달하고, 거래 성사 여부 확정
@@ -129,7 +129,7 @@ public class FrontController {
     }
 
     public int payTBLInsrt(int transaction_id, int payOpt, String paymentStatus) {
-        System.out.println(" >>> FrontController payment 결제 테이블 업데이트 진행");
+        // System.out.println(" >>> FrontController payment 결제 테이블 업데이트 진행");
         PaymentController payCtrl = (PaymentController) factory.getCtrl("payment") ;
 
         int isPayTBLinsert = payCtrl.payTBLinsert(transaction_id, payOpt, paymentStatus) ;
@@ -139,7 +139,7 @@ public class FrontController {
     }
 
     public int auctionStatus(int transaction_id) {
-        System.out.println(" >>> FrontController payment 경매 완료 여부 확인");
+        // System.out.println(" >>> FrontController payment 경매 완료 여부 확인");
         PaymentController payCtrl = (PaymentController) factory.getCtrl("payment") ;
 
         int isAuctionCMPLT = payCtrl.auctionCMPLT(transaction_id) ;

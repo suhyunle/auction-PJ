@@ -15,7 +15,7 @@ public class RegisterController {
     }
 
     public int registerItem(RequestDTO request){
-        System.out.println(">>>> debug ctrl register");
+        // System.out.println(">>>> debug ctrl register");
 
         return service.registerService(request);
     } 

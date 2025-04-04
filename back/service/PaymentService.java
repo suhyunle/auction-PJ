@@ -13,21 +13,21 @@ public class PaymentService {
 
 
     public String buyerIdService(int transaction_id) {
-        System.out.println("구매자 ID 확인 중: PaymentService");
+        // System.out.println("구매자 ID 확인 중: PaymentService");
         return paymentDAO.buyerIdRow(transaction_id) ;
          // 임시로 1로 설정
 
     }
 
     public int transIdCheckService(int transaction_id) {
-        System.out.println("거래 ID 확인 중: PaymentService");
+        // System.out.println("거래 ID 확인 중: PaymentService");
         return paymentDAO.transIdCheckRow(transaction_id) ;
          // 임시로 1로 설정
 
     }
 
     public String statusCheckService(int transaction_id, String buyer_id) {
-        System.out.println("거래 성사 여부 확인 중: Payment statusCheckService");
+        // System.out.println("거래 성사 여부 확인 중: Payment statusCheckService");
         // System.out.println(paymentDAO.statusCheckRow(transaction_id, payOpt));
         String loggedInUser = UserSession.getLoggedInUser();
         return paymentDAO.statusCheckRow(transaction_id, loggedInUser) ;

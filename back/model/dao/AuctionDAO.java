@@ -14,7 +14,7 @@ import back.session.DBConnection;
 public class AuctionDAO {
 
     public Optional<ResponseDTO> selectRow(int seq){ // Optional 리턴 메서드
-        System.out.println(">>> debug selectDao");
+        // System.out.println(">>> debug selectDao");
         Optional<ResponseDTO> response = Optional.empty(); // Optional 객체 생성
         Connection          conn  = null;
         PreparedStatement   pstmt = null;
@@ -50,7 +50,7 @@ public class AuctionDAO {
     }
 
      public Optional<List<ResponseDTO>> selectRow(){ // Optional 리턴 메서드
-        System.out.println(">>> debug selectDao");
+        // System.out.println(">>> debug selectDao");
         List<ResponseDTO> list = new ArrayList<>();
         Connection          conn  = null;
         PreparedStatement   pstmt = null;

@@ -142,8 +142,10 @@ public class ViewTest {
     public void loginMenu(){
         while (true) {
             try{
+                // System.out.println("----------------------------------------------------");
                 System.out.println(">>> 로그인 메뉴 <<<");
                 System.out.println("현재 로그인된 ID: " + UserSession.getLoggedInUser());
+                System.out.println("------------------------------------------------------------------------------------------");
                 System.out.println("1.경매 물품보기 | 2.경매 물품등록 | 3.경매 참여 | 4.로그아웃 | 5.거래내역 확인 | 6. 결제");
                 System.out.print("원하시는 번호를 선택하세요 : ");
                 Scanner scan = new Scanner(System.in); // in: System 클래스가 갖고 있는 static 메서드
@@ -195,6 +197,21 @@ public class ViewTest {
     // buyItem
     public void buyItem(){
         System.out.println("경매 참여");
+        List<ResponseDTO> lst = front.watchItem();
+        lst.removeIf(item -> "완료".equals(item.getStatus()));
+        // 입찰 가능한 물품이 없는 경우
+
+        if (lst.isEmpty()) {
+            System.out.println("입찰 가능한 경매 물품이 없습니다. 메인 메뉴로 돌아갑니다.");
+            loginMenu(); // 메서드 종료
+        }
+
+        System.out.println();
+        System.out.println(">>> 현재 입찰 가능한 물품 List <<<");
+        
+        for(ResponseDTO value : lst){
+            System.out.println(value);
+        }
         System.out.print("입찰할 상품ID을 입력하세요: ");
         int itemId = scan.nextInt();
         scan.nextLine();
@@ -240,21 +257,38 @@ public class ViewTest {
         List<TranResDTO> lst = front.watchTran();
         System.out.println();
         
-        for(TranResDTO value : lst){
+        for (TranResDTO value : lst) {
+            // 완료 여부 표시
+            String statusIcon = "완료".equals(value.getIsCompleted()) ? "✔ 완료됨" : "⏳ 진행중";
+            
             System.out.println(value);
+            System.out.println("   → 결제상태: " + statusIcon);
+            System.out.println("----------------------------------------------------");
         }
     }
 
     // PAYMENT PART: 결제 파트. 결제가 성공적으로 완료되면 1 반환, 실패하면 0 반환
     public void payment() {
-        // int transaction_id ;
-        int payment_id ;
+
         String buyer_id ;
 
         while (true) {
             System.out.println("결제 페이지에 오신 것을 환영합니다");
+            System.out.println("거래 내역 확인");
+            List<TranResDTO> lst = front.watchTran();
+            lst.removeIf(tran -> "완료".equals(tran.getIsCompleted()));
 
+            if (lst.isEmpty()) {
+                System.out.println("결제 가능한 거래가 없습니다. 메인 메뉴로 돌아갑니다.");
+                loginMenu();;
+            }
+            System.out.println("----------------------------------------------------");
+            System.out.println(">>> 현재 결제 해야하는 품목");
+            for(TranResDTO value : lst){
+                System.out.println(value);
+            }
             System.out.println("거래 ID를 입력하세요: ");
+            System.out.println("----------------------------------------------------");
             transaction_id = scan.nextInt() ;
 
             int paymentResult = front.payment(transaction_id) ;
@@ -270,13 +304,15 @@ public class ViewTest {
         }
     }
     public void subPayMenu() {
-        System.out.println("subPayMenu 메서드 실행 확인");
+        // System.out.println("subPayMenu 메서드 실행 확인");
         
         System.out.print("잔액을 충전하시겠습니까? (Y/N): ");
+        System.out.println("----------------------------------------------------");
         String chargeOpt = scan.next();
 
         if (chargeOpt.equalsIgnoreCase("Y")) {
             System.out.print("충전할 금액을 입력하세요: ");
+            System.out.println("----------------------------------------------------");
             int chargeAmount = scan.nextInt();
             int chargeResult = front.chargeBalance(buyer_id, chargeAmount); // 🔹추가 메서드 호출
             if (chargeResult > 0) {
@@ -288,6 +324,7 @@ public class ViewTest {
 
         System.out.println("결제방법을 선택합니다.");
         System.out.println("1. 신용카드 | 2. 계좌이체 | 3. PayPal | 4. 기타");
+        System.out.println("----------------------------------------------------");
         int payOpt = scan.nextInt() ;
 
         String paymentStatus = front.payStatus(transaction_id, buyer_id) ;

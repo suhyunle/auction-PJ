@@ -21,7 +21,7 @@ public class HistoryController {
 
     public List<TranResDTO> watchTran(){
         
-        System.out.println(">>> debug selectTodo_all");
+        // System.out.println(">>> debug selectTodo_all");
         
         Optional<List<TranResDTO>> response = service.tranService();
         if(response.isPresent()){
