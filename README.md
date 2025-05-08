@@ -1,11 +1,15 @@
 # 🧾 온라인 경매 시스템 (Online Auction System)
 
->
+
 > JDBC & MVC 패턴 기반의 콘솔/웹 기반 온라인 경매 플랫폼  
 > 사용자 간의 실시간 입찰, 상품 등록, 낙찰, 결제까지 구현된 경매 시뮬레이션 시스템입니다.
 >
->
+> <img src="https://github.com/user-attachments/assets/44c082b1-1400-49bf-bb31-6f07c1d7a054">
 ---
+
+##기술스택
+<img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=openjdk&logoColor=white"> <img src="https://img.shields.io/badge/JDBC-003B57?style=for-the-badge&logo=java&logoColor=white"> <img src="https://img.shields.io/badge/Oracle%20DB-F80000?style=for-the-badge&logo=oracle&logoColor=white"> <img src="https://img.shields.io/badge/MVC%20Architecture-239120?style=for-the-badge&logoColor=white"> <img src="https://img.shields.io/badge/Singleton%20Pattern-6DB33F?style=for-the-badge&logoColor=white"> <img src="https://img.shields.io/badge/Console%20UI-808080?style=for-the-badge&logoColor=white">
+
 
 ## 🧩 프로젝트 개요
 
