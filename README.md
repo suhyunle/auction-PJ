@@ -4,7 +4,7 @@
 > JDBC & MVC 패턴 기반의 콘솔/웹 기반 온라인 경매 플랫폼  
 > 사용자 간의 실시간 입찰, 상품 등록, 낙찰, 결제까지 구현된 경매 시뮬레이션 시스템입니다.
 >
-> <img src="https://github.com/user-attachments/assets/c34e733e-882f-4cbd-9c67-d254461b0aea" width="300">
+> <img src="https://github.com/user-attachments/assets/c34e733e-882f-4cbd-9c67-d254461b0aea" width="600">
 ---
 
 ##기술스택
