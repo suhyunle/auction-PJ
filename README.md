@@ -43,11 +43,45 @@
 - **알림 기능**: 비동기 처리 (옵션)
 
 ---
-##BACK
-main -> view -> frontController -> N Controller -> N service -> N dao
+## ⚙️ 백엔드 구조 및 설계
 
-frontController를 통한 각각의 N Controller에 접근 Contorller에서 각 service에 접근 service에서 각 dao에 접근한 뒤에 dao에서는 db를 조작하는 방식
+### 🧭 전체 흐름
 
-FrontController 의 경우 기존에는 단일 service 클래스를 참조하기 위해 하나의 객체만 생성했으나 각각의 서비스가 생겼으므로 각각의 service 객체를 Beanfactory 안에 생성해 싱글톤 패턴을 유지할 계획
+main → view → FrontController → N Controller → N Service → N DAO → DB
 
-dao의 경우 기존에는 DRIVER URL 등의 상수를 SESSION 안의 DBCONNECT 파일 하나로 유지함
+
+
+본 프로젝트는 **MVC 아키텍처**를 기반으로, 사용자 요청부터 DB 조작까지 다음과 같은 흐름으로 처리됩니다.
+
+- **`main`**: 애플리케이션 진입점으로, 초기 화면(view)을 호출합니다.
+- **`view`**: 사용자 입력을 받아 `FrontController`에 전달합니다.
+- **`FrontController`**: 모든 요청을 중앙에서 받아 적절한 `Controller`로 전달합니다. (*DispatcherServlet 역할*)
+- **`Controller`**: 기능별로 분기되어 있는 로직 컨트롤러. 요청을 해당 `Service`에 위임합니다.
+- **`Service`**: 비즈니스 로직을 수행하고, `DAO`를 호출합니다.
+- **`DAO`**: DB에 직접 접근하여 데이터를 처리합니다.
+
+---
+
+### 🧱 설계 개선 및 특징
+
+#### ✅ FrontController 구조 개선
+
+- 기존에는 단일 Service 객체만을 직접 생성해 사용
+- 기능 확장에 따라 다수의 Service 객체가 생기면서, **BeanFactory에서 Service 객체를 생성·관리**하도록 개선
+- 이를 통해 **싱글톤 패턴 유지**, 객체 재사용, 메모리 효율성 확보
+
+```java
+// 예시: BeanFactory 내부
+public class BeanFactory {
+    private static final Map<String, Object> objMap = new HashMap<>();
+
+    static {
+        objMap.put("productService", new ProductService());
+        objMap.put("userService", new UserService());
+        // ... 필요한 서비스 객체 추가
+    }
+
+    public static Object getBean(String key) {
+        return objMap.get(key);
+    }
+}
