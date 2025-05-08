@@ -1,8 +1,10 @@
 # 🧾 온라인 경매 시스템 (Online Auction System)
 
+>
 > JDBC & MVC 패턴 기반의 콘솔/웹 기반 온라인 경매 플랫폼  
 > 사용자 간의 실시간 입찰, 상품 등록, 낙찰, 결제까지 구현된 경매 시뮬레이션 시스템입니다.
-
+>
+>
 ---
 
 ## 🧩 프로젝트 개요
@@ -51,14 +53,22 @@ main → view → FrontController → N Controller → N Service → N DAO → D
 
 
 
-본 프로젝트는 **MVC 아키텍처**를 기반으로, 사용자 요청부터 DB 조작까지 다음과 같은 흐름으로 처리됩니다.
+본 프로젝트는 **MVC 아키텍처**를 기반으로, 사용자 요청부터 DB 조작까지 다음과 같은 흐름으로 처리하였습니다. 
 
-- **`main`**: 애플리케이션 진입점으로, 초기 화면(view)을 호출합니다.
-- **`view`**: 사용자 입력을 받아 `FrontController`에 전달합니다.
-- **`FrontController`**: 모든 요청을 중앙에서 받아 적절한 `Controller`로 전달합니다. (*DispatcherServlet 역할*)
-- **`Controller`**: 기능별로 분기되어 있는 로직 컨트롤러. 요청을 해당 `Service`에 위임합니다.
-- **`Service`**: 비즈니스 로직을 수행하고, `DAO`를 호출합니다.
-- **`DAO`**: DB에 직접 접근하여 데이터를 처리합니다.
+- **`main`**: 애플리케이션의 시작점으로, 사용자에게 첫 화면(입찰, 상품 목록 등)을 출력하는 `view`를 실행합니다.
+- **`view`**: 사용자로부터 입력(예: 입찰가, 상품 등록 정보 등)을 받아 `FrontController`에 전달합니다.
+- **`FrontController`**: 모든 사용자 요청을 중앙에서 받아 분기 처리하며, 적절한 `Controller`(예: 입찰, 상품 등록, 결제 등)로 전달합니다. (*DispatcherServlet 역할*)
+- **`Controller`**: 기능별로 구성된 컨트롤러로, 사용자의 요청을 해당 `Service`에 위임합니다.  
+  예: `AuctionController`, `ProductController`, `UserController` 등
+- **`Service`**: 경매 로직을 처리하는 비즈니스 계층입니다.  
+  예를 들어, 입찰가 비교 후 최고가 갱신, 낙찰 시간 계산, 결제 조건 검증 등의 처리를 담당합니다.
+- **`DAO`**: 실제 DB에 접근하여 경매 상품, 입찰 내역, 회원 정보 등을 저장하거나 조회합니다.
+
+
+예시흐름
+입찰 요청 → view → FrontController → AuctionController
+          → AuctionService → AuctionDAO → DB에 입찰 정보 저장 및 최고가 갱신
+
 
 ---
 
