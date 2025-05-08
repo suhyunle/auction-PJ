@@ -39,7 +39,11 @@
 | 💳 결제 시스템     | 낙찰 후 결제 및 거래내역 저장 |
 
 ---
+## 테이블구조
 
+<img src ="https://github.com/user-attachments/assets/2be3ddbc-a0ba-4dcb-9252-df4771bf12c1" width="700">
+
+---
 ## 🧱 시스템 아키텍처
 
 
