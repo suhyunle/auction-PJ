@@ -9,12 +9,7 @@
 
 ## 🛠 기술 스택
 
-<img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=openjdk&logoColor=white">  
-<img src="https://img.shields.io/badge/JDBC-003B57?style=for-the-badge&logo=java&logoColor=white">  
-<img src="https://img.shields.io/badge/Oracle%20DB-F80000?style=for-the-badge&logo=oracle&logoColor=white">  
-<img src="https://img.shields.io/badge/MVC%20Architecture-239120?style=for-the-badge&logoColor=white">  
-<img src="https://img.shields.io/badge/Singleton%20Pattern-6DB33F?style=for-the-badge&logoColor=white">  
-<img src="https://img.shields.io/badge/Console%20UI-808080?style=for-the-badge&logoColor=white">  
+<img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=openjdk&logoColor=white">  <img src="https://img.shields.io/badge/JDBC-003B57?style=for-the-badge&logo=java&logoColor=white">  <img src="https://img.shields.io/badge/Oracle%20DB-F80000?style=for-the-badge&logo=oracle&logoColor=white">  <img src="https://img.shields.io/badge/MVC%20Architecture-239120?style=for-the-badge&logoColor=white">  <img src="https://img.shields.io/badge/Singleton%20Pattern-6DB33F?style=for-the-badge&logoColor=white">  <img src="https://img.shields.io/badge/Console%20UI-808080?style=for-the-badge&logoColor=white">  
 
 ## 🧩 프로젝트 개요
 
