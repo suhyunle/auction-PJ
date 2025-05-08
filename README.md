@@ -65,7 +65,7 @@ main → view → FrontController → N Controller → N Service → N DAO → D
 - **`DAO`**: 실제 DB에 접근하여 경매 상품, 입찰 내역, 회원 정보 등을 저장하거나 조회합니다.
 
 
-예시흐름
+### 예시흐름
 입찰 요청 → view → FrontController → AuctionController
           → AuctionService → AuctionDAO → DB에 입찰 정보 저장 및 최고가 갱신
 
