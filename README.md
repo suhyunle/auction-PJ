@@ -17,9 +17,9 @@
 ## 멤버
   | 직책 | 담당 | 이름 | github id  | 취미 | |
 |--|--|--|--|--|--|
-| 팀장 | FE | 이수현 |  [@suhyunle](https://github.com/suhyunle)| 명상 | <img src="https://github.com/user-attachments/assets/f2a2d74e-6c39-48ea-ab20-7665eae9be12" alt="이수현" width="100"/> |
-| 팀원 | FE | 조영석 | [@zkftpfm](https://github.com/zkftpfm) | 명상 | <img src="https://github.com/user-attachments/assets/27a3d5e6-4a37-42e4-9393-d8e353d5b11f" alt="조영석" width="100"/> |
-| 팀원 | BE | 최여명 | [@yeomyeonGit](https://github.com/yeomyeonGit) | 명상 | <img src="https://github.com/user-attachments/assets/42377928-87ab-42a1-8bf0-c09d5952bc47" alt="최여명" width="100"/> |
+| 팀장 | FE | 이수현 |  [@suhyunle](https://github.com/suhyunle)| 코딩 | <img src="https://github.com/user-attachments/assets/f2a2d74e-6c39-48ea-ab20-7665eae9be12" alt="이수현" width="100"/> |
+| 팀원 | FE | 조영석 | [@zkftpfm](https://github.com/zkftpfm) | 돈 | <img src="https://github.com/user-attachments/assets/27a3d5e6-4a37-42e4-9393-d8e353d5b11f" alt="조영석" width="100"/> |
+| 팀원 | BE | 최여명 | [@yeomyeonGit](https://github.com/yeomyeonGit) | 외국어 공부 | <img src="https://github.com/user-attachments/assets/42377928-87ab-42a1-8bf0-c09d5952bc47" alt="최여명" width="100"/> |
 | 팀원 | BE | 최형규 | [@Choihyeonggyu-Q](https://github.com/Choihyeonggyu-Q) | 명상 | <img src="https://github.com/user-attachments/assets/4e55c61e-48a0-47c4-be22-9ac97b6c9f1a" alt="최형규" width="100"/>  |
 
 ---
