@@ -47,7 +47,7 @@
 2. `auction_item` - 경매 상품 : 회원이 등록한 경매 상품 정보와 마감 시간을 관리합니다.
 3. `bid` - 입찰 정보 : 특정 경매 상품에 대해 회원이 입찰한 가격과 시점을 저장합니다.
 4. `payment` - 결제 내역 : 낙찰 후 결제 정보 및 결제 상태를 기록
-5. 5. `category` - 카테고리 정보 : 경매 상품의 분류를 관리합니다.
+5. `category` - 카테고리 정보 : 경매 상품의 분류를 관리
 
 ## 🔗 테이블 관계 
 
@@ -56,15 +56,14 @@
 - `bid` 1 ⬌ 1 `payment`  
 - `auction_item` N ⬌ 1 `category`
 
-- 
+  
 ---
 ## 🧱 시스템 아키텍처
 
+- 패턴: MVC 아키텍처
+- DB 연결: JDBC (Java Database Connectivity)
+- API 통신: RESTful 방식 (웹 구현 시)
 
-- **패턴**: MVC 아키텍처
-- **DB 연결**: JDBC (Java Database Connectivity)
-- **API 통신**: RESTful 방식 (웹 구현 시)
-- **알림 기능**: 비동기 처리 (옵션)
 
 ---
 ## ⚙️ 백엔드 구조 및 설계
@@ -77,14 +76,14 @@ main → view → FrontController → N Controller → N Service → N DAO → D
 
 본 프로젝트는 **MVC 아키텍처**를 기반으로, 사용자 요청부터 DB 조작까지 다음과 같은 흐름으로 처리하였습니다. 
 
-- **`main`**: 애플리케이션의 시작점으로, 사용자에게 첫 화면(입찰, 상품 목록 등)을 출력하는 `view`를 실행합니다.
-- **`view`**: 사용자로부터 입력(예: 입찰가, 상품 등록 정보 등)을 받아 `FrontController`에 전달합니다.
-- **`FrontController`**: 모든 사용자 요청을 중앙에서 받아 분기 처리하며, 적절한 `Controller`(예: 입찰, 상품 등록, 결제 등)로 전달합니다. (*DispatcherServlet 역할*)
-- **`Controller`**: 기능별로 구성된 컨트롤러로, 사용자의 요청을 해당 `Service`에 위임합니다.  
+- `main`: 애플리케이션의 시작점으로, 사용자에게 첫 화면(입찰, 상품 목록 등)을 출력하는 `view`를 실행
+- `view`: 사용자로부터 입력(예: 입찰가, 상품 등록 정보 등)을 받아 `FrontController`에 전달
+- `FrontController`: 모든 사용자 요청을 중앙에서 받아 분기 처리하며, 적절한 `Controller`(예: 입찰, 상품 등록, 결제 등)로 전달 (*DispatcherServlet 역할*)
+- `Controller`: 기능별로 구성된 컨트롤러로, 사용자의 요청을 해당 `Service`에 위임
   예: `AuctionController`, `ProductController`, `UserController` 등
-- **`Service`**: 경매 로직을 처리하는 비즈니스 계층입니다.  
-  예를 들어, 입찰가 비교 후 최고가 갱신, 낙찰 시간 계산, 결제 조건 검증 등의 처리를 담당합니다.
-- **`DAO`**: 실제 DB에 접근하여 경매 상품, 입찰 내역, 회원 정보 등을 저장하거나 조회합니다.
+- `Service`: 경매 로직을 처리하는 비즈니스 계층
+  예를 들어, 입찰가 비교 후 최고가 갱신, 낙찰 시간 계산, 결제 조건 검증 등의 처리를 담당
+- `DAO`: 실제 DB에 접근하여 경매 상품, 입찰 내역, 회원 정보 등을 저장하거나 조회
 
 
 ### 예시흐름
@@ -117,3 +116,7 @@ public class BeanFactory {
         return objMap.get(key);
     }
 }
+```
+---
+### 시현 영상
+
