@@ -12,7 +12,15 @@
 - 콘솔 기반 또는 웹 기반으로 구현 가능
 
 ---
+## 멤버
+  | 직책 | 담당 | 이름 | github id  | 취미 | |
+|--|--|--|--|--|--|
+| 팀장 | FE | 이수현 |  [@suhyunle](https://github.com/nimod7890)| 코딩 | <img src="https://github.com/user-attachments/assets/f2a2d74e-6c39-48ea-ab20-7665eae9be12" alt="김보민" width="100"/> |
+| 팀원 | FE | 조영석 | [@racgoo](https://github.com/racgoo) | 명상 | <img src="https://github.com/user-attachments/assets/27a3d5e6-4a37-42e4-9393-d8e353d5b11f" alt="성락현" width="100"/> |
+| 팀원 | BE | 최여명 | [@jun-ha](https://github.com/jun-ha) | 코딩 | <img src="https://github.com/user-attachments/assets/42377928-87ab-42a1-8bf0-c09d5952bc47" alt="장준하" width="100"/> |
+| 팀원 | BE | 최형규 | [@bjh3311](https://github.com/bjh3311) | 서브웨이 | <img src="https://github.com/user-attachments/assets/4e55c61e-48a0-47c4-be22-9ac97b6c9f1a" alt="배진환" width="100"/>  |
 
+---
 ## 🛠️ 주요 기능
 
 | 기능            | 설명 |
