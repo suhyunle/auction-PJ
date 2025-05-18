@@ -19,6 +19,7 @@
 
 ---
 ## 멤버
+
   | 직책 | 담당 | 이름 | github id  | 취미 | |
 |--|--|--|--|--|--|
 | 팀장 | FE | 이수현 |  [@suhyunle](https://github.com/suhyunle)| 코딩 | <img src="https://github.com/user-attachments/assets/711c7565-9d40-4e93-8c7d-198bcb7422bf" alt="이수현" width="200"/> |
